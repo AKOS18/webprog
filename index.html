@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 feladat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        table, th, td {
+            
+            border: 1px solid #000;
+            text-align: center;
+            padding: 10px;
+        }
+        td.hidden {
+            visibility: hidden;
+        }
+        #egy {
+            background-color: rgb(32, 247, 4); 
+        }
+        
+        button {
+            padding: 10px 20px;
+        }
+        .counter-container, .shopping-list-container {
+            background-color: rgb(41, 97, 34);
+            border: 1px solid #000;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .counter-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .table-container, .shopping-list-container {
+            width: 100%;
+            max-width: 500px;
+        }
+        table {
+            
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+       
+    </style>
+</head>
+<body>
+<div class="counter-container">
+    
+    <span id="szam">0</span>
+    <br>
+    <button onclick="szamnov()">+</button>
+    <button onclick="szamcsok()">-</button>
+</div>
+<br>
+<div class="table-container">
+    <table id="tabla">
+        <tr>
+            <td id="egy" onclick="ures(this)"></td>
+            <td id="egy" onclick="ures(this)"></td>
+            <td id="egy" onclick="ures(this)"></td>
+        </tr>
+        <tr>
+            <td id="egy" onclick="ures(this)"></td>
+            <td id="egy" onclick="ures(this)"></td>
+            <td id="egy" onclick="ures(this)"></td>
+        </tr>
+        <tr>
+            <td id="egy" onclick="ures(this)"></td>
+            <td id="egy" onclick="ures(this)"></td>
+            <td id="egy" onclick="ures(this)"></td>
+        </tr>
+    </table>
+    <button onclick="torol()">Újra</button>
+</div>
+<br>
+<div class="shopping-list-container">
+    <input type="text" id="bevitel" placeholder="Adj megvalamit" />
+    <button onclick="hozzaad()">Hozzáad</button>
+    <ul id="Lista1"></ul>
+</div>
+
+<script>
+        var count = 0 
+
+    function szamnov() {
+        count++;
+        document.getElementById('szam').innerHTML = count;
+    }
+
+    function szamcsok() {
+        count--;
+        document.getElementById('szam').innerHTML = count;
+    }
+
+    function ures(cell) {
+        cell.classList.add('hidden');
+    }
+
+    function torol() {
+        const cells = document.querySelectorAll('#tabla td');
+        cells.forEach(cell => cell.classList.remove('hidden'));
+    }
+
+  
+    const Lista = document.getElementById('Lista1');
+    const itemInput = document.getElementById('bevitel');
+
+    function hozzaad() {
+        const szoveg = bevitel.value.trim();
+        if (szoveg === '') return;
+
+        const valt = document.createElement('li');
+        valt.textContent = szoveg;
+        valt.onclick = () => valt.remove();
+        Lista1.appendChild(valt);
+
+        bevitel.value = '';
+        bevitel.focus();
+    }
+</script>
+</body>
+</html>
